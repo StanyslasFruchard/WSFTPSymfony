@@ -5,7 +5,7 @@
 {% block body %}
     {% for subject in subjects %}
         <a href="{{ path('subject_single', {id:subject.id}) }}">
-           <article class="card card-block {% if subject.votes < 0 %}Mauvais{% endif %}">
+           <article class="card card-block {% if reply.votes < 0 %}Mauvais{% endif %}">
             <h3 class="card-title">{{ subject.title }}</h3>
             <section class="card-text">{{ subject.description }}</section>
             <span class="card-text">

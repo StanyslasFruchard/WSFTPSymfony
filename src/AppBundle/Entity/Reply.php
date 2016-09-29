@@ -4,79 +4,66 @@ namespace AppBundle\Entity;
 
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
- * @ORM\Entity(repositoryClass="AppBundle\Repository\SubjectRepository")
- * @ORM\Table()
- * @ORM\HasLifecycleCallbacks()
- */
-class Subject
+* @ORM\Entity()
+* @ORM\Table()
+*/
+class Reply
 {
     /**
      * @ORM\Id()
      * @ORM\GeneratedValue(strategy="AUTO")
      * @ORM\Column(type="integer")
-     *
      * @var int
      */
     private $id;
 
     /**
      * @ORM\Column(type="string")
-     *
+     * @assert\NotBlank()
      * @var string
      */
     private $title;
 
     /**
      * @ORM\Column(type="text")
-     *
+     * @assert\NotBlank()
      * @var string
      */
     private $description;
 
     /**
-     * @ORM\Column(type="boolean")
-     *
-     * @var bool
+     * @ORM\Column(type="text")
+     * @assert\NotBlank()
+
+     * @var string
      */
-    private $resolved;
+    private $author;
 
     /**
-     * @ORM\Column(type="datetime")
-     *
-     * @var \DateTime
+     * @ORM\Column(type="text")
+     * @var string
      */
-    private $createdAt;
+    private $authorEmail;
 
     /**
-     * @ORM\Column(type="datetime")
-     *
-     * @var \DateTime
+     * @ORM\ManyToOne(targetEntity="Subject", inversedBy="replies")
+     * @var string
      */
-    private $updatedAt;
-    
+    private $subject;
+
     /**
      * @ORM\Column(type="integer")
-     *
      * @var int
      */
     private $votes;
 
-    /**
-     * @ORM\OneToMany(targetEntity="Reply", mappedBy="subject")
-     * @ORM\OrderBy({"votes" = "DESC"})
-     * @var string
-     */
-    private $replies;
-
-
     public function __construct()
     {
-        $this->resolved  = false;
-        $this->createdAt = new \DateTime;
-        $this->updatedAt = new \DateTime;
-        $this->replies = new ArrayCollection();
+        $this->title = "Nouvelle réponse";
+        $this->description = "Description";
         $this->votes = 0;
     }
 
@@ -86,22 +73,6 @@ class Subject
     public function getId()
     {
         return $this->id;
-    }
-
-    /**
-     * @return \DateTime
-     */
-    public function getCreatedAt()
-    {
-        return $this->createdAt;
-    }
-
-    /**
-     * @return \DateTime
-     */
-    public function getUpdatedAt()
-    {
-        return $this->updatedAt;
     }
 
     /**
@@ -137,29 +108,51 @@ class Subject
     }
 
     /**
-     * @return boolean
+     * @return string
      */
-    public function isResolved()
+    public function getSubject()
     {
-        return $this->resolved;
+        return $this->subject;
     }
 
     /**
-     * @param boolean $resolved
+     * @param string $subject
      */
-    public function setResolved($resolved)
+    public function setSubject($subject)
     {
-        $this->resolved = $resolved;
+        $this->subject = $subject;
     }
 
-
+    /**
+     * @return string
+     */
+    public function getAuthor()
+    {
+        return $this->author;
+    }
 
     /**
-     * @ORM\PreUpdate()
+     * @param string $author
      */
-    public function preUpdate()
+    public function setAuthor($author)
     {
-        $this->updatedAt = new \DateTime;
+        $this->author = $author;
+    }
+
+    /**
+     * @return string
+     */
+    public function getAuthorEmail()
+    {
+        return $this->authorEmail;
+    }
+
+    /**
+     * @param string $authorEmail
+     */
+    public function setAuthorEmail($authorEmail)
+    {
+        $this->authorEmail = $authorEmail;
     }
 
     /**
@@ -169,28 +162,19 @@ class Subject
     {
         return $this->votes;
     }
-    
+
     /**
      * @param string $votes
-     */   
+     */
     public function setVotes($votes)
     {
         $this->votes = $votes;
     }
     /**
      * @param string $votes
-     */ 
+     */
     public function voteUp()
     {
         $this->votes++;
     }
-
-    /**
-     * @return string
-     */
-    public function getReplies()
-    {
-        return $this->replies;
-    }
-    
 }

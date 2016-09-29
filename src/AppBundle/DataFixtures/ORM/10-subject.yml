@@ -3,7 +3,20 @@
         title: '<sentence()>'
         description: '<sentences(3, true)>'
         resolved: true
+        votes: 0
     subject_{26..50}:
         title: '<sentence()>'
         description: '<sentences(3, true)>'
         resolved: false
+        votes: 0
+'AppBundle\Entity\Reply':
+    reply_{1..100}:
+        subject: '@subject_*'
+        description: '<sentences(3, true)>'
+        title: '<sentence()>'
+        author: '<name()>'
+        authorEmail: '<email()>'
+        votes: 0
+
+
+

@@ -1,0 +1,31 @@
+{% extends 'base.html.twig' %}
+
+{% block title 'Sujet' %}
+
+{% block body %}
+           <article class="card card-block">
+            <h3 class="card-title">{{ subject.title }}</h3>
+            <section class="card-text">{{ subject.description }}</section>
+            <span class="card-text">
+                z<small class="text-muted">
+                    {{ subject.updatedAt|localizeddate }}
+                </small>
+            </span>
+        </article>
+    {% for reply in subject.replies %}
+        <article class="card card-block {% if reply.votes < 0 %}Mauvais{% endif %}" style="width: 80%;">
+            <h2 class="card-title">{{ reply.votes }}</h2><a href="{{ path('reply_vote_up', {id:reply.id, subjectId:subject.id})}}">Vote Up !</a>
+            <a href="{{ path('reply_vote_down', {id:reply.id, subjectId:subject.id})}}">Vote Down !</a>
+            <h3 class="card-title">{{ reply.title }}</h3>
+            <h4 class="card-title">{{ reply.author }}</h4>
+
+            <h4 class="card-title">{{ reply.authorEmail }}</h4>
+            <section class="card-text">{{ reply.description }}</section>
+            <a href="{{ path('reply_delete', {id:reply.id}) }}"><button class="delete">Delete</button></a>
+        </article>
+
+    {% endfor %}
+    <form action="{{ path('subject_single', {id:subject.id}) }}" method="post" novalidate="novalidate">
+    {{ form_widget(form) }}
+    </form>
+{% endblock %}

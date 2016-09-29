@@ -1,0 +1,12 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <form action="{{ path('subject_create') }}" method="post" novalidate="novalidate">
+        {{ form_widget(form) }}
+    </form>
+{% endblock %}
+
+{% block title %}
+
+{% endblock %}
+
