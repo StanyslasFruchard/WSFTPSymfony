@@ -12,10 +12,11 @@
                 <small class="text-muted">
                     {{ subject.updatedAt|localizeddate }}
                 </small>
-                <small class="text-muted">
+                <small class="text-muted" style="">
                     {{ subject.votes }} votes
-                    <a href="{{ path('subject_single_vote_up', {id:subject.id}) }}">Vote Up !</a>
-                    <a href="{{ path('subject_single_vote_down', {id:subject.id}) }}">Vote Down !</a>
+                    <a class="voteUp" href="{{ path('subject_single_vote_up', {id:subject.id}) }}">Vote Up !</a>
+                    <a class="voteDown" href="{{ path('subject_single_vote_down', {id:subject.id}) }}">Vote Down !</a>
+                    <a class="resolve" href="{{ path('subject_resolve', {id:subject.id}) }}"> -Résolu -</a>
                 </small>
             </span>
                <a href="{{ path('subject_delete', {id:subject.id}) }}"><button class="delete">Delete</button></a>

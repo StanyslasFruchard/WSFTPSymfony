@@ -64,7 +64,7 @@ class Subject
     private $votes;
 
     /**
-     * @ORM\OneToMany(targetEntity="Reply", mappedBy="subject")
+     * @ORM\OneToMany(targetEntity="Reply", mappedBy="subject", cascade={"remove"})
      * @ORM\OrderBy({"votes" = "DESC"})
      * @var string
      */

@@ -1,0 +1,53 @@
+.text-muted {
+    margin-top: 30px;
+}
+.card-text {
+    margin-top: 10px; margin-bottom: 10px
+}
+.Mauvais {
+    background-color: lightgray;
+}
+.delete {
+    background-color:#ee0000;
+    width:60px;
+    height:30px;
+    border:none;
+    border-radius: 5px;
+    color:white;
+    float:right
+}
+.voteUp {
+    padding:10px;
+    background-color: Green;
+    color: white;
+    border-radius: 5px;
+    margin-top: 20px;
+}
+.voteDown {
+    padding:10px;
+    background-color: red;
+    color: white;
+    border-radius: 5px;
+    margin-top: 20px;
+}
+.resolve {
+    padding:10px;
+    background-color: darkmagenta;
+    color: white;
+    border-radius: 5px;
+    margin-top: 20px;
+}
+.voteUp:hover, .voteDown:hover, .resolve:hover, .delete:hover {
+    color: gray;
+    transition-duration: 0.5s;
+    text-decoration: none;
+    background-color : darkblue;
+}
+.navBloc li{
+    display: inline-block;
+    padding: 20px;
+    border-bottom: 2px solid grey;
+    margin-left: 10px;
+    margin-right: 10px;
+    color: #0000F0;
+}

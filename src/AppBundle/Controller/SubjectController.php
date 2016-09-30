@@ -36,6 +36,19 @@ class SubjectController extends Controller
             'subjects' => $this->getDoctrine()->getRepository(Subject::class)->findResolved()
         ];
     }
+
+    /**
+     * @Route(path="/{id}/resoudre", methods={"GET"}, name="subject_resolve")
+     * @Template()
+     */
+    public function subjectResolveAction($id)
+    {
+        $subject= $this->getDoctrine()->getRepository(Subject::class)->find($id);
+        $subject->setResolved(true);
+        $this->getDoctrine()->getManager()->flush();
+        return $this->redirectToRoute('homepage');
+    }
+
     /**
      * @Route(path="/{id}", methods={"GET","POST"}, name="subject_single", requirements = {"id" = "\d+"})
      * @Template()
