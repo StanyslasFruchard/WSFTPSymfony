@@ -1,0 +1,9 @@
+<article class="card card-block">
+    <h3 class="card-title">{{ subject.title }}</h3>
+    <section class="card-text">{{ subject.description }}</section>
+    <span class="card-text">
+                z<small class="text-muted">
+                    {{ subject.updatedAt|localizeddate }}
+                </small>
+            </span>
+</article>

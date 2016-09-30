@@ -132,7 +132,7 @@ class SubjectController extends Controller
      * @Route(path="/{id}/delete", methods={"GET"}, name="subject_delete")
      * @Template()
      */
-    public function replyDeleteAction($id)
+    public function subjectDeleteAction($id)
     {
         $subject = $this->getDoctrine()->getRepository(Subject::class)->find($id);
         $deleteSubject = $this->getDoctrine()->getManager();

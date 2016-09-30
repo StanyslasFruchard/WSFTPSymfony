@@ -4,22 +4,6 @@
 
 {% block body %}
     {% for subject in subjects %}
-        <a href="{{ path('subject_single', {id:subject.id}) }}">
-           <article class="card card-block {% if subject.votes < 0 %}Mauvais{% endif %}">
-            <h3 class="card-title">{{ subject.title }} - Résolu</h3>
-            <section class="card-text">{{ subject.description }}</section>
-            <span class="card-text">
-                <small class="text-muted">
-                    {{ subject.updatedAt|localizeddate }}
-                </small>
-                <small class="text-muted">
-                    {{ subject.votes }} votes
-                     <a class="voteUp" href="{{ path('subject_single_vote_up', {id:subject.id}) }}">Vote Up !</a>
-                    <a class="voteDown" href="{{ path('subject_single_vote_down', {id:subject.id}) }}">Vote Down !</a>
-                </small>
-            </span>
-               <a href="{{ path('subject_delete', {id:subject.id}) }}"><button class="delete">Delete</button></a>
-           </article>
-        </a>
+        {{ include('subjects/subjectsSingleResolved.html.twig', { 'subject': subject }) }}
     {% endfor %}
 {% endblock %}
